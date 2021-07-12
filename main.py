@@ -1,18 +1,21 @@
 import warnings
 
 import pandas as pd
-
-import json
+import sys, os, warnings, json
 
 warnings.filterwarnings('ignore')
-
-
 # -----------------------------------------------------------------
 # -----------------------------------------------------------------
-courses = pd.read_csv("Resources/courses.csv")
-marks = pd.read_csv("Resources/marks.csv")
-students = pd.read_csv("Resources/students.csv")
-tests = pd.read_csv("Resources/tests.csv")
+# courses = pd.read_csv("Resources/courses.csv")
+# marks = pd.read_csv("Resources/marks.csv")
+# students = pd.read_csv("Resources/students.csv")
+# tests = pd.read_csv("Resources/tests.csv")
+# print(sys.argv)
+[script_name, courses_path, marks_path, students_path, tests_path, output_path] = sys.argv
+courses = pd.read_csv(courses_path)
+marks = pd.read_csv(marks_path)
+students = pd.read_csv(students_path)
+tests = pd.read_csv(tests_path)
 
 
 # -----------------------------------------------------------------
@@ -44,7 +47,6 @@ def get_info(student_data):
 
 # -----------------------------------------------------------------
 # -----------------------------------------------------------------
-
 def main():
     students_list = []
     students_list_pandas = []
@@ -74,12 +76,12 @@ def main():
                 student["courses"] = courses_list
             students_list_pandas.append(student_data)
             students_list.append(student)
-        students_data = dict()
-        students_data["students"] = students_list
+        studenst_data = dict()
+        studenst_data["students"] = students_list
     else:
-        students_data = {"error": "Invalid course weights"}
-    with open("output.json", 'w') as f:
-        json.dump(students_data, f, indent=1)
+        studenst_data = {"error": "Invalid course weights"}
+    with open(output_path, 'w') as f:
+        json.dump(studenst_data, f, indent=1)
 
 
 # -----------------------------------------------------------------
