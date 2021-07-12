@@ -11,7 +11,7 @@ warnings.filterwarnings('ignore')
 # students = pd.read_csv("Resources/students.csv")
 # tests = pd.read_csv("Resources/tests.csv")
 # print(sys.argv)
-[script_name, courses_path, marks_path, students_path, tests_path, output_path] = sys.argv
+[script_name, courses_path, students_path, tests_path, marks_path, output_path] = sys.argv
 courses = pd.read_csv(courses_path)
 marks = pd.read_csv(marks_path)
 students = pd.read_csv(students_path)
